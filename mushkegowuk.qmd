@@ -163,7 +163,6 @@ Recordings and images were uploaded to WildTrax for processing and can be downlo
 Advanced users can also use `wildrtrax` with `wt_get_sync(api = "organization_recordings", organization = 5843)`. Ensure you have correct access to the Organization as these projects are not currently published `r Sys.Date()`.
 :::
 
-![Downloading a list of recordings from WildTrax](assets/nsma-recs.png){#fig-download-recs}
 
 The principal goal for data processing was to describe the acoustic community of species heard at locations while choosing a large enough subset of recordings for analyses. To ensure balanced replication, for each location and year surveyed, four randomly selected recordings were processed for 3-minutes between the hours of 3:00 AM - 7:59 AM (dawn period) and 20:00 - 23:59 PM (dusk period), ideally on four separate dates. Four samples ensures that there is minimum number of samples being able to detect most species. Tags are made using count-removal (see @farnsworth2002removal, @time-removal) where tags are only made at the time of first detection of each individual heard on the recordings. We also verified that all tags that were created were checked by a second observer (n = )  to ensure accuracy of detections (see @tbl-verified). 
 
@@ -181,7 +180,7 @@ To evaluate species richness and activity patterns, we grouped the data by year 
 
 # Discussion
 
-To ensure the integrity and consistency of a long-term monitoring program, it is important to maintain a consistent survey schedule and timing each year when deploying ARUs. This consistency helps reduce variation caused by seasonal differences in species presence or activity. Additionally, the importance of regular maintenance and calibration of ARU equipment, particularly microphones, which degrade over time and can affect data quality if not properly managed after prolonged field use (see @arus-mics). Surveying locations with a history of monitoring over multiple years is key to tracking changes in species composition and detecting long-term trends. By including sites with both high and low species diversity, we can better understand how habitats and species ranges are shifting over time. Sites where species-at-risk are present are also prioritized to support conservation efforts. Together, these considerations inform the prioritized list of key sampling sites across the NSMA region, as summarized in Table @tbl-prioritization.
+To ensure the integrity and consistency of a long-term monitoring program, it is important to maintain a consistent survey schedule and timing each year when deploying ARUs. This consistency helps reduce variation caused by seasonal differences in species presence or activity. Additionally, the importance of regular maintenance and calibration of ARU equipment, particularly microphones, which degrade over time and can affect data quality if not properly managed after prolonged field use (see @arus-mics). Surveying locations with a history of monitoring over multiple years is key to tracking changes in species composition and detecting long-term trends. By including sites with both high and low species diversity, we can better understand how habitats and species ranges are shifting over time. Sites where species-at-risk are present are also prioritized to support conservation efforts. Together, these considerations inform the prioritized list of key sampling sites across the Muskegowuk Council region, as summarized in Table @tbl-prioritization.
 
 ```{r}
 #| warning: false
@@ -202,7 +201,7 @@ repeat_priority <- locs_summary |>
 
 rich_priority <- spp_rich_location |> group_by(location) |> summarise(priority = mean(species_count)) |> arrange(-priority)
 
-soi_priority <- nsma_main |>
+soi_priority <- mc_main |>
   filter(species_common_name %in% soi) |>
   select(location, latitude, longitude, recording_date_time, species_common_name)  |>
   group_by(location) |>
